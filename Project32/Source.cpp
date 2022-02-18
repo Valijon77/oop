@@ -58,7 +58,7 @@ public:
 		this->age = age;
 		this->name = name;
 	}
-	void sethuman(int a, string n)
+	void sethuman(int a, string n)//const error
 	{
 		age = a;
 		name = n;
@@ -66,6 +66,43 @@ public:
 	void Display()const
 	{
 		cout << age << endl << name << endl;
+	}
+};
+
+class Birthday
+{
+private:
+	int month, day, year;
+public:
+	/*Birthday()
+	{
+
+	}*/
+	Birthday(int m, int d, int y) // or we can assign values int m=0, int d=0, int y=0
+	{
+		month = m;
+		day = d;
+		year = y;
+	}
+	void display() {
+		cout << year << " " << month << " " << day << endl;
+	}
+};
+
+class Employee
+{
+private:
+	string name;
+	Birthday dob; // this what composition means
+public:
+	Employee(string n, Birthday b):name(n), dob(b)
+	{
+		/*name = n;
+		dob = b;*/
+	}
+	void printemp() {
+		cout << "I am " << name << endl;
+		dob.display();
 	}
 };
 
@@ -132,18 +169,21 @@ int main()
 	//	(h[i]).Display();
 	//}
 
-	Humann h;
+	/*Humann h;
 	h.sethuman(12, "asd");
-	h.Display();
-	// h.SetHuman(2, "as"); //wors fine
+	h.Display();*/
+	// h.SetHuman(2, "as"); //works fine
 
 	//const Humann h1;
 	//h1.sethuman(112, "aassd"); // error
 
-	const Humann h2(15, "xyz"); // works!
-	h2.Display();
+	//const Humann h2(15, "xyz"); // works!
+	//h2.Display();
 	//const h2.humann;
 
+	Birthday b(1, 1, 2003);
+	Employee e("johnny", b);
+	e.printemp();
 
 
 
